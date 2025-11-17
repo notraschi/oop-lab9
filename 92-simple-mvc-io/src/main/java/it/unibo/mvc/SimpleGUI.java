@@ -66,6 +66,6 @@ public final class SimpleGUI {
      *      ignored
      */
     public static void main(final String... args) {
-        new SimpleGUI().display();
+        new SimpleGUIWithFileChooser().display();
     }
 }
