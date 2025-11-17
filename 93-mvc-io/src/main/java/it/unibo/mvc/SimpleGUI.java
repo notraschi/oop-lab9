@@ -1,6 +1,10 @@
 package it.unibo.mvc;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,6 +19,7 @@ import javax.swing.JTextField;
 public final class SimpleGUI {
 
     private final JFrame frame = new JFrame();
+    private final Controller controller = new SimpleController();
 
     /**
      * sets up the view.
@@ -36,15 +41,41 @@ public final class SimpleGUI {
         bottom.add(print);
         final JButton showHistory = new JButton("show history");
         bottom.add(showHistory);
+        // action listeners
+        print.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent ae) {
+                controller.setNext(field.getText());
+                controller.printCurrent();
+            }
+        });
+        showHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent ae) {
+                historyArea.setText("");
+                for (final String pastString : controller.getHistory()) {
+                    historyArea.append(pastString);
+                    historyArea.append("\n");
+                }
+            }
+        });
     }
 
     /**
      * displays the view.
      */
     private void display() {
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize((int) screen.getWidth() / 2, (int) screen.getHeight() / 2);
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
 
+    /**
+     * starting the program.
+     * 
+     * @param args ignored
+     */
     public static void main(final String... args) {
         new SimpleGUI().display();
     }
