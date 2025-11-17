@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.BoxLayout;
@@ -50,6 +52,8 @@ public class BadIOGUI {
 
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        final JButton read = new JButton("read from file");
+        panel.add(read);
         /*
          * Handlers
          */
@@ -68,6 +72,23 @@ public class BadIOGUI {
                 } catch (final IOException e) {
                     JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                }
+            }
+        });
+        read.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent ignored) {
+                try {
+                    final List<String> lines = Files.readAllLines(
+                        new File(PATH).toPath(),
+                        StandardCharsets.UTF_8
+                    );
+                    for (final String line : lines) {
+                        System.out.println(line); // NOPMD: this was requested
+                    }
+                } catch (final IOException ex) {
+                    JOptionPane.showMessageDialog(frame, ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
             }
         });
