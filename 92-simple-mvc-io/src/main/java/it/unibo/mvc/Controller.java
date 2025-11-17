@@ -5,32 +5,37 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-
 /**
  * Application controller. Performs the I/O.
  */
 public class Controller {
 
-    private final String HOME = System.getProperty("user.home")
+    private static final String HOME = System.getProperty("user.home")
         + System.getProperty("file.separator");
-    private File current = new File(HOME + "output.txt");    
+    private File current = new File(HOME + "output.txt");
 
     /**
-     * gets current target file
+     * gets current target file.
+     * 
+     * @return
+     *      current target file
      */
     public File getCurrent() {
         return current;
     }
 
     /**
-     * gets current target file's path
+     * gets current target file's path.
+     * 
+     * @return 
+     *      current file's path as a {@code String}
      */
     public String getPath() {
         return current.toPath().toString();
     }
 
     /**
-     * sets current file
+     * sets current file.
      * 
      * @param newCurrent
      *      new current file
@@ -40,7 +45,7 @@ public class Controller {
     }
 
     /**
-     * writes on the current target file
+     * writes on the current target file.
      * 
      * @param content
      *      what to write on current target file
