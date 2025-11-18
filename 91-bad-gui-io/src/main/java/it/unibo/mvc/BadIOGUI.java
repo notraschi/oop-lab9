@@ -31,8 +31,8 @@ public class BadIOGUI {
 
     private static final String TITLE = "A very simple GUI application";
     private static final String PATH = System.getProperty("user.home")
-            + File.separator
-            + BadIOGUI.class.getSimpleName() + ".txt";
+        + File.separator
+        + BadIOGUI.class.getSimpleName() + ".txt";
     private static final int PROPORTION = 5;
     private final Random randomGenerator = new Random();
     private final JFrame frame = new JFrame(TITLE);

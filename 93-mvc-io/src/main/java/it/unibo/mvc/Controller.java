@@ -11,6 +11,7 @@ public interface Controller {
      * sets next string to print.
      * 
      * @param s the string in question
+     * @throws NullPointerException if {@code s} is null 
      */
     void setNext(String s);
 
@@ -23,6 +24,8 @@ public interface Controller {
 
     /**
      * prints current string.
+     * 
+     * @throws IllegalStateException if next string isn't set
      */
     void printCurrent();
 

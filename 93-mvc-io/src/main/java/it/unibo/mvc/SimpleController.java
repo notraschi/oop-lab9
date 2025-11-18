@@ -2,6 +2,7 @@ package it.unibo.mvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * simple implementation of the stdout controller {@link Controller}.
@@ -16,10 +17,7 @@ public final class SimpleController implements Controller {
      */
     @Override
     public void setNext(final String s) {
-        if (s == null) {
-            throw new IllegalArgumentException("cannot print null strings");
-        }
-        next = s;
+        next = Objects.requireNonNull(s, "cannot print null strings");
     }
 
     /**

@@ -10,8 +10,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Controller {
 
-    private static final String HOME = System.getProperty("user.home")
-        + System.getProperty("file.separator");
+    private static final String HOME = System.getProperty("user.home") + File.separator;
     private File current = new File(HOME + "output.txt");
 
     /**
